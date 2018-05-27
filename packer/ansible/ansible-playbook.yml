@@ -1,0 +1,9 @@
+---
+- name: Install and configuration Serverless-framework
+  hosts: localhost
+  become: yes
+  tasks:
+    - name : install serverless
+      shell: npm install -g serverless
+      args:
+        executable: /bin/bash
