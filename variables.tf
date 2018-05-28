@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 variable "region" {
-  description = "in witch region do you want to deploy SAP?"
+  description = "in witch region do you want to deploy?"
 }
 
 variable "Hostname" {
@@ -20,14 +20,9 @@ variable "Timezone" {
   default = "Europe/Rome"
 }
 
-variable "DomainName" {
-  default = "test.com"
-}
-
 variable "AWS_KEY" {}
 
 variable "AWS_SECRET" {
-  description = "insert your aws secret key of IAM"
 }
 
 variable "delete_on_termination" {
@@ -43,7 +38,7 @@ variable "key_name" {
   description = "in witch availability zone do you want to deploy?"
 
   default = {
-    eu-west-1      = "azateclab-ie"
+    eu-west-1      = "test"
     eu-west-2      = "test"
     eu-central-1   = "test"
     us-east-1      = "test"
@@ -63,7 +58,6 @@ variable "key_name" {
 
 variable "availability_zone" {
   description = "The existing availability_zone where you want to deploy SAP HANA. a, b, c, d"
-  default     = "a"
 }
 
 variable "private_subnet" {
@@ -71,9 +65,9 @@ variable "private_subnet" {
   description = "in witch availability zone do you want to deploy?"
 
   default = {
-    "a" = "subnet-c30300b5"
-    "b" = "subnet-86fb34ce"
-    "c" = "subnet-10060b74"
+    "a" = "subnet-"
+    "b" = "subnet-"
+    "c" = "subnet-"
   }
 }
 
@@ -84,12 +78,12 @@ variable "instance_type" {
 
 variable "security_group_id" {
   description = "what is id of security group?"
-  default     = "sg-2c7f4555"
+  default     = "sg-"
 }
 
 variable "public_subnet" {
   description = "what is id of subnet_id?"
-  default     = "subnet-c30300b5"
+  default     = "subnet-"
 }
 
 variable "Environment" {
