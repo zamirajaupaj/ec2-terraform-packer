@@ -22,8 +22,7 @@ variable "Timezone" {
 
 variable "AWS_KEY" {}
 
-variable "AWS_SECRET" {
-}
+variable "AWS_SECRET" {}
 
 variable "delete_on_termination" {
   default = true
@@ -34,42 +33,15 @@ variable "volume_size_root" {
 }
 
 variable "key_name" {
-  type        = "map"
   description = "in witch availability zone do you want to deploy?"
-
-  default = {
-    eu-west-1      = "test"
-    eu-west-2      = "test"
-    eu-central-1   = "test"
-    us-east-1      = "test"
-    us-east-2      = "test"
-    us-west-1      = "test"
-    us-west-2      = "test"
-    ca-central-1   = "test"
-    eu-west-3      = "test"
-    ap-northeast-1 = "test"
-    ap-northeast-2 = "test"
-    ap-southeast-1 = "test"
-    ap-southeast-2 = "test"
-    ap-south-1     = "test"
-    sa-east-1      = "test"
-  }
 }
 
 variable "availability_zone" {
   description = "The existing availability_zone where you want to deploy SAP HANA. a, b, c, d"
+  default     = "a"
 }
 
-variable "private_subnet" {
-  type        = "map"
-  description = "in witch availability zone do you want to deploy?"
-
-  default = {
-    "a" = "subnet-"
-    "b" = "subnet-"
-    "c" = "subnet-"
-  }
-}
+variable "public_subnet_1" {}
 
 variable "instance_type" {
   description = "Instance type for SAP instance"
@@ -78,12 +50,14 @@ variable "instance_type" {
 
 variable "security_group_id" {
   description = "what is id of security group?"
-  default     = "sg-"
 }
 
 variable "public_subnet" {
   description = "what is id of subnet_id?"
-  default     = "subnet-"
+}
+
+variable "vpc_id" {
+  description = "what is id of subnet_id?"
 }
 
 variable "Environment" {

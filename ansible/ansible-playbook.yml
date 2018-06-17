@@ -1,0 +1,32 @@
+---
+- name: Install and configuration Serverless-framework
+  hosts: localhost
+  become: yes
+  tasks:
+    - name : install serverless
+      shell: npm install -g serverless
+      args:
+        executable: /bin/bash
+
+    - name: Import the public key used by the package management system
+      become: yes
+      become_method: sudo
+      apt_key: >
+        keyserver=hkp://keyserver.ubuntu.com:80
+        id=EA312927
+        state=present
+
+    - name: Add mongo sources list
+      sudo: yes
+      lineinfile: >
+        line="deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
+        dest=/etc/apt/sources.list.d/mongodb-org-3.2.list
+        state=present
+        create=yes
+
+    - name: Install the latest stable version of MongoDB
+      apt:
+        update_cache=yes
+        name=mongodb-org 
+        state=present
+      

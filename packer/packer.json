@@ -3,7 +3,7 @@
     "aws_access_key": "",
     "aws_secret_key": "",
     "aws_region": "eu-west-1",
-    "aws_ami_image": "ami-1b791862",
+    "aws_ami_image": "ami-58d7e821",
     "aws_instance_type": "t2.micro"
 
   },
@@ -15,7 +15,7 @@
     "source_ami": "{{user `aws_ami_image`}}",
     "instance_type": "{{user `aws_instance_type`}}",
     "ssh_username": "ubuntu",
-    "ami_name": "zamira-example-{{user `timestamp`}}",
+    "ami_name": "zamira-test-{{user `timestamp`}}",
     "tags": {
    	  "OS_Version": "Ubuntu",
     	"Release": "Latest"
@@ -27,6 +27,13 @@
       "execute_command": "echo 'ubuntu' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
         "sleep 30",
+        "/usr/bin/apt-get update",
+        "/usr/bin/apt-get install ruby -y",
+        "cd /home/ubuntu/",
+        "wget https://aws-codedeploy-eu-west-1.s3.amazonaws.com/latest/install",
+        "chmod +x /home/ubuntu/install",
+        "sudo /home/ubuntu/install auto",
+        "sudo service codedeploy-agent start",
         "apt-get install software-properties-common -y",
         "apt-add-repository ppa:ansible/ansible -y",
         "/usr/bin/apt-get update",
@@ -41,8 +48,17 @@
       "destination": "/home/ubuntu/"
     },
     {
+      "type": "file",
+      "source": "scripts",
+      "destination": "/home/ubuntu/"
+    },
+    {
       "type": "ansible-local",
       "playbook_file": "ansible/ansible-playbook.yml"
+    },
+    {
+      "type": "shell",
+      "scripts": "scripts/provision.sh"
     }
   ]
 }

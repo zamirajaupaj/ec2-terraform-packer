@@ -29,11 +29,13 @@ resource "aws_iam_role_policy" "Ec2Policy" {
 {
   "Version": "2012-10-17",
   "Statement": [
-	{
+	  {
       "Action": [
         "cloudwatch:GetMetricStatistics",
         "cloudwatch:PutMetricData",
-        "cloudwatch:ListMetrics"
+        "cloudwatch:ListMetrics",
+        "codedeploy:*",
+        "s3:*"
       ],
       "Effect": "Allow",
       "Resource": "*"
