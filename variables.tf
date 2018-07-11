@@ -6,6 +6,7 @@ provider "aws" {
 
 variable "region" {
   description = "in witch region do you want to deploy?"
+  default     = "eu-west-1"
 }
 
 variable "Hostname" {
@@ -20,9 +21,13 @@ variable "Timezone" {
   default = "Europe/Rome"
 }
 
-variable "AWS_KEY" {}
+variable "AWS_KEY" {
+  default = ""
+}
 
-variable "AWS_SECRET" {}
+variable "AWS_SECRET" {
+  default = ""
+}
 
 variable "delete_on_termination" {
   default = true
@@ -34,6 +39,7 @@ variable "volume_size_root" {
 
 variable "key_name" {
   description = "in witch availability zone do you want to deploy?"
+  default     = ""
 }
 
 variable "availability_zone" {
@@ -41,7 +47,19 @@ variable "availability_zone" {
   default     = "a"
 }
 
-variable "public_subnet_1" {}
+variable "PublicSubnetIds" {
+  type        = "list"
+  description = "A list of VPC subnet IDs"
+  default     = ["subnet-", "subnet-"]
+}
+
+variable "snsTopic" {
+  default = "snsTopic"
+}
+
+variable "bucketName" {
+  default = ""
+}
 
 variable "instance_type" {
   description = "Instance type for SAP instance"
@@ -50,14 +68,12 @@ variable "instance_type" {
 
 variable "security_group_id" {
   description = "what is id of security group?"
-}
-
-variable "public_subnet" {
-  description = "what is id of subnet_id?"
+  default     = "sg-"
 }
 
 variable "vpc_id" {
   description = "what is id of subnet_id?"
+  default     = "vpc-"
 }
 
 variable "Environment" {

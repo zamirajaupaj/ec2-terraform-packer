@@ -1,9 +1,9 @@
 # Create a new load balancer
-/*
+
 resource "aws_elb" "app-balancer" {
   name            = "app-balancer-terraform-elb"
   security_groups = ["${aws_security_group.elbsg.id}"]
-  subnets         = ["${var.public_subnet}"]
+  subnets         = ["${var.PublicSubnetIds}"]
 
   listener {
     instance_port     = 80
@@ -29,5 +29,3 @@ resource "aws_elb" "app-balancer" {
     Name = "node-terraform-elb"
   }
 }
-*/
-

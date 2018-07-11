@@ -62,7 +62,7 @@ resource "aws_codedeploy_deployment_group" "myapp" {
   service_role_arn      = "${aws_iam_role.RoleCodeDeploy.arn}"
 
   deployment_config_name = "CodeDeployDefault.OneAtATime"
-  autoscaling_groups     = ["${aws_autoscaling_group.austoscaling.name}"]
+  autoscaling_groups     = ["${aws_autoscaling_group.asg_conf.name}"]
 
   ec2_tag_filter {
     type  = "KEY_AND_VALUE"

@@ -5,7 +5,7 @@ resource "aws_autoscaling_policy" "as_policy" {
   scaling_adjustment     = 4
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
-  autoscaling_group_name = "${aws_autoscaling_group.austoscaling.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.asg_conf.name}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "RootAlarm" {
@@ -21,7 +21,7 @@ resource "aws_cloudwatch_metric_alarm" "RootAlarm" {
   insufficient_data_actions = []
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.austoscaling.name}"
+    AutoScalingGroupName = "${aws_autoscaling_group.asg_conf.name}"
     MountPath            = "/"
   }
 
@@ -43,7 +43,7 @@ resource "aws_cloudwatch_metric_alarm" "StatusCheckAlarm" {
   insufficient_data_actions = []
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.austoscaling.name}"
+    AutoScalingGroupName = "${aws_autoscaling_group.asg_conf.name}"
   }
 
   alarm_actions = [
